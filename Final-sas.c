@@ -14,8 +14,9 @@ struct team
     int goals;
     int Jerseynum;
 
-}player[100], temp;
+} player[100], temp;
 
+void defplayer();
 void addplayers();
 void showallp();
 void editplayer();
@@ -35,11 +36,11 @@ bool founde = false;
 
 int main()
 {
-    
+    defplayer();
     do
     {
 
-        printf("-------------------\n");
+        printf("\033[1;32m-------------------\n");
         printf("1.Add Player\n");
         printf("2.Show All Players\n");
         printf("3.Edit Player\n");
@@ -47,6 +48,7 @@ int main()
         printf("5.Research a Player\n");
         printf("6.Team Statistics\n");
         printf("0.Exit\n");
+        printf("-------------------\033[0m\n");
 
         scanf("%d", &choice);
 
@@ -84,7 +86,7 @@ int main()
 
         default:
             system("cls");
-            printf("invalid choice please try again !!\n");
+            printf("\033[1;31minvalid choice please try again !!\033[0m\n");
             sleep(2);
             system("cls");
             break;
@@ -93,6 +95,100 @@ int main()
     } while (choice != 0);
 
     return 0;
+}
+
+void defplayer()
+{
+
+    strcpy(player[count].name, "cristiano");
+    strcpy(player[count].lastname, "ronaldo");
+    player[count].age = 40;
+    strcpy(player[count].position, "AT");
+    player[count].goals = 910;
+    player[count].Jerseynum = 7;
+    player[count].id = nextid++;
+    count++;
+
+    strcpy(player[count].name, "Karim");
+    strcpy(player[count].lastname, "Benzema");
+    strcpy(player[count].position, "AT");
+    player[count].age = 35;
+    player[count].goals = 350;
+    player[count].Jerseynum = 9;
+    player[count].id = nextid++;
+    count++;
+
+    strcpy(player[count].name, "Luka");
+    strcpy(player[count].lastname, "Modric");
+    strcpy(player[count].position, "CM");
+    player[count].age = 38;
+    player[count].goals = 50;
+    player[count].Jerseynum = 10;
+    player[count].id = nextid++;
+    count++;
+
+    strcpy(player[count].name, "Thibaut");
+    strcpy(player[count].lastname, "Courtois");
+    strcpy(player[count].position, "GK");
+    player[count].age = 32;
+    player[count].goals = 0;
+    player[count].Jerseynum = 1;
+    player[count].id = nextid++;
+    count++;
+
+    strcpy(player[count].name, "Sergio");
+    strcpy(player[count].lastname, "Ramos");
+    strcpy(player[count].position, "DF");
+    player[count].age = 39;
+    player[count].goals = 100;
+    player[count].Jerseynum = 4;
+    player[count].id = nextid++;
+    count++;
+
+    strcpy(player[count].name, "Vinicius");
+    strcpy(player[count].lastname, "Junior");
+    strcpy(player[count].position, "AT");
+    player[count].age = 24;
+    player[count].goals = 80;
+    player[count].Jerseynum = 7;
+    player[count].id = nextid++;
+    count++;
+
+    strcpy(player[count].name, "Toni");
+    strcpy(player[count].lastname, "Kroos");
+    strcpy(player[count].position, "CM");
+    player[count].age = 35;
+    player[count].goals = 70;
+    player[count].Jerseynum = 8;
+    player[count].id = nextid++;
+    count++;
+
+    strcpy(player[count].name, "Marcelo");
+    strcpy(player[count].lastname, "Vieira");
+    strcpy(player[count].position, "DF");
+    player[count].age = 37;
+    player[count].goals = 30;
+    player[count].Jerseynum = 12;
+    player[count].id = nextid++;
+    count++;
+
+    strcpy(player[count].name, "Kylian");
+    strcpy(player[count].lastname, "Mbappe");
+    strcpy(player[count].position, "AT");
+    player[count].age = 26;
+    player[count].goals = 200;
+    player[count].Jerseynum = 11;
+    player[count].id = nextid++;
+    count++;
+
+    strcpy(player[count].name, "Casemiro");
+    strcpy(player[count].lastname, "Silva");
+    strcpy(player[count].position, "CM");
+    player[count].age = 33;
+    player[count].goals = 40;
+    player[count].Jerseynum = 14;
+    player[count].id = nextid++;
+    count++;
 }
 
 void addplayers()
@@ -123,43 +219,43 @@ void addplayers()
             printf("Enter Player Age: \n");
             scanf("%d", &player[count].age);
 
-        do
-        {
-            printf("Enter Player Position: \n");
-            printf("1.AT\n");
-            printf("2.CM\n");
-            printf("3.DF\n");
-            printf("4.GK\n");
-            scanf("%d", &poschoice);
-
-            switch(poschoice)
+            do
             {
-            case 1:
-            strcpy(player[count].position, "AT");
-            break;
+                printf("Enter Player Position: \n");
+                printf("1.AT\n");
+                printf("2.CM\n");
+                printf("3.DF\n");
+                printf("4.GK\n");
+                scanf("%d", &poschoice);
 
-            case 2:
-            strcpy(player[count].position, "CM");
-            break;
+                switch (poschoice)
+                {
+                case 1:
+                    strcpy(player[count].position, "AT");
+                    break;
 
-            case 3:
-            strcpy(player[count].position, "DF");
-            break;
+                case 2:
+                    strcpy(player[count].position, "CM");
+                    break;
 
-            case 4:
-            strcpy(player[count].position, "GK");
-            break;
+                case 3:
+                    strcpy(player[count].position, "DF");
+                    break;
 
-            default:
-            system("cls");
-            printf("invalid choice please try again !!\n");
-            sleep(2);
-            system("cls");
-            break;
-            }
+                case 4:
+                    strcpy(player[count].position, "GK");
+                    break;
 
-        }while(poschoice != 1 && poschoice != 2 && poschoice != 3 && poschoice != 4);
-            
+                default:
+                    system("cls");
+                    printf("\033[1;31minvalid choice please try again !!\033[0m\n");
+                    sleep(2);
+                    system("cls");
+                    break;
+                }
+
+            } while (poschoice != 1 && poschoice != 2 && poschoice != 3 && poschoice != 4);
+
             printf("Enter Player Goals: \n");
             scanf("%d", &player[count].goals);
 
@@ -172,7 +268,7 @@ void addplayers()
             system("cls");
             printf("wait a momment .... \n");
             sleep(2);
-            printf("Player has been added successfuly :)\n");
+            printf("\033[1;32mPlayer has been added successfully :)\033[0m\n");
             sleep(2);
             system("pause");
             system("cls");
@@ -198,42 +294,42 @@ void addplayers()
                 printf("Enter Player%d Age: \n", i + 1);
                 scanf("%d", &player[count].age);
 
-            do
-           {
-                printf("Enter Player%d Position: \n", i + 1);    
-                printf("1.AT\n");
-                printf("2.CM\n");
-                printf("3.DF\n");
-                printf("4.GK\n");
-                scanf("%d", &poschoice);
+                do
+                {
+                    printf("Enter Player%d Position: \n", i + 1);
+                    printf("1.AT\n");
+                    printf("2.CM\n");
+                    printf("3.DF\n");
+                    printf("4.GK\n");
+                    scanf("%d", &poschoice);
 
-                switch(poschoice)
-            {
-            case 1:
-            strcpy(player[count].position, "AT");
-            break;
+                    switch (poschoice)
+                    {
+                    case 1:
+                        strcpy(player[count].position, "AT");
+                        break;
 
-            case 2:
-            strcpy(player[count].position, "CM");
-            break;
+                    case 2:
+                        strcpy(player[count].position, "CM");
+                        break;
 
-            case 3:
-            strcpy(player[count].position, "DF");
-            break;
+                    case 3:
+                        strcpy(player[count].position, "DF");
+                        break;
 
-            case 4:
-            strcpy(player[count].position, "GK");
-            break;
+                    case 4:
+                        strcpy(player[count].position, "GK");
+                        break;
 
-            default:
-            system("cls");
-            printf("invalid choice please try again !!\n");
-            sleep(2);
-            system("cls");
-            break;
-            }
+                    default:
+                        system("cls");
+                        printf("\033[1;31minvalid choice please try again !!\033[0m\n");
+                        sleep(2);
+                        system("cls");
+                        break;
+                    }
 
-            }while(poschoice != 1 && poschoice != 2 && poschoice != 3 && poschoice != 4);
+                } while (poschoice != 1 && poschoice != 2 && poschoice != 3 && poschoice != 4);
 
                 printf("Enter Player%d Goals: \n", i + 1);
                 scanf("%d", &player[count].goals);
@@ -248,7 +344,7 @@ void addplayers()
             system("cls");
             printf("wait a momment .... \n");
             sleep(2);
-            printf("the players has been added successfuly :)\n");
+            printf("\033[1;32mPlayer has been added successfully :)\033[0m\n");
             sleep(2);
             system("pause");
             system("cls");
@@ -260,7 +356,7 @@ void addplayers()
 
         default:
             system("cls");
-            printf("invalid choice please try again !!\n");
+            printf("\033[1;31minvalid choice please try again !!\033[0m\n");
             sleep(2);
             system("cls");
             break;
@@ -303,7 +399,7 @@ void showallp()
 
                 for (int i = 0; i < count; i++)
                 {
-                    printf("ID: %d || First name: %s || Last name: %s || Age: %d || Position: %s || Goals: %d || Jersey numer: %d\n", player[i].id, player[i].name, player[i].lastname, player[i].age, player[i].position, player[i].goals, player[i].Jerseynum);
+                    printf("ID: %-3d || First name: %-15s || Last name: %-15s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d\n", player[i].id, player[i].name, player[i].lastname, player[i].age, player[i].position, player[i].goals, player[i].Jerseynum);
                 }
                 sleep(2);
                 system("pause");
@@ -321,7 +417,7 @@ void showallp()
 
         case 2:
             system("cls");
-            
+
             if (count > 0)
             {
 
@@ -340,7 +436,7 @@ void showallp()
 
                 for (int i = 0; i < count; i++)
                 {
-                    printf("ID: %d || First name: %s || Last name: %s || Age: %d || Position: %s || Goals: %d || Jersey numer: %d\n", player[i].id, player[i].name, player[i].lastname, player[i].age, player[i].position, player[i].goals, player[i].Jerseynum);
+                    printf("ID: %-3d || First name: %-15s || Last name: %-15s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d\n", player[i].id, player[i].name, player[i].lastname, player[i].age, player[i].position, player[i].goals, player[i].Jerseynum);
                 }
                 sleep(2);
                 system("pause");
@@ -377,7 +473,7 @@ void showallp()
 
                 for (int i = 0; i < count; i++)
                 {
-                    printf("ID: %d || First name: %s || Last name: %s || Age: %d || Position: %s || Goals: %d || Jersey numer: %d\n", player[i].id, player[i].name, player[i].lastname, player[i].age, player[i].position, player[i].goals, player[i].Jerseynum);
+                    printf("ID: %-3d || First name: %-15s || Last name: %-15s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d\n", player[i].id, player[i].name, player[i].lastname, player[i].age, player[i].position, player[i].goals, player[i].Jerseynum);
                 }
                 sleep(2);
                 system("pause");
@@ -401,7 +497,7 @@ void showallp()
         default:
 
             system("cls");
-            printf("invalid choice please try again !!\n");
+            printf("\033[1;31minvalid choice please try again !!\033[0m\n");
             sleep(2);
             system("cls");
             break;
@@ -434,46 +530,46 @@ void editplayer()
             case 1:
                 system("cls");
 
-            do
-            {
-                printf("Edit Player Position: \n");
-                printf("1.AT\n");
-                printf("2.CM\n");
-                printf("3.DF\n");
-                printf("4.GK\n");
-                scanf("%d", &poschoice);
-
-                switch(poschoice)
+                do
                 {
-                case 1:
-                strcpy(player[i].position, "AT");
-                break;
+                    printf("Edit Player Position: \n");
+                    printf("1.AT\n");
+                    printf("2.CM\n");
+                    printf("3.DF\n");
+                    printf("4.GK\n");
+                    scanf("%d", &poschoice);
 
-                case 2:
-                strcpy(player[i].position, "CM");
-                break;
+                    switch (poschoice)
+                    {
+                    case 1:
+                        strcpy(player[i].position, "AT");
+                        break;
 
-                case 3:
-                strcpy(player[i].position, "DF");
-                break;
+                    case 2:
+                        strcpy(player[i].position, "CM");
+                        break;
 
-                case 4:
-                strcpy(player[i].position, "GK");
-                break;
+                    case 3:
+                        strcpy(player[i].position, "DF");
+                        break;
 
-                default:
-                system("cls");
-                printf("invalid choice please try again !!\n");
-                sleep(2);
-                system("cls");
-                break;
-                }
+                    case 4:
+                        strcpy(player[i].position, "GK");
+                        break;
 
-                }while(poschoice != 1 && poschoice != 2 && poschoice != 3 && poschoice != 4);
+                    default:
+                        system("cls");
+                        printf("\033[1;31minvalid choice please try again !!\033[0m\n");
+                        sleep(2);
+                        system("cls");
+                        break;
+                    }
+
+                } while (poschoice != 1 && poschoice != 2 && poschoice != 3 && poschoice != 4);
                 system("cls");
                 printf("wait a momment .... \n");
                 sleep(2);
-                printf("The player has been successfully modified :)\n");
+                printf("\033[1;32mThe player has been successfully modified :)\033[0m\n");
                 sleep(2);
                 system("pause");
                 system("cls");
@@ -486,7 +582,7 @@ void editplayer()
                 system("cls");
                 printf("wait a momment .... \n");
                 sleep(2);
-                printf("The player has been successfully modified :)\n");
+                printf("\033[1;32mThe player has been successfully modified :)\033[0m\n");
                 sleep(2);
                 system("pause");
                 system("cls");
@@ -499,7 +595,7 @@ void editplayer()
                 system("cls");
                 printf("wait a momment .... \n");
                 sleep(2);
-                printf("The player has been successfully modified :)\n");
+                printf("\033[1;32mThe player has been successfully modified :)\033[0m\n");
                 sleep(2);
                 system("pause");
                 system("cls");
@@ -511,7 +607,7 @@ void editplayer()
 
             default:
                 system("cls");
-                printf("invalid choice Back to main menu ....\n");
+                printf("\033[1;31minvalid choice Back to main menu ....\033[0m\n");
                 sleep(2);
                 system("cls");
                 break;
@@ -523,7 +619,7 @@ void editplayer()
 
     if (founde == false)
     {
-        printf("not found :(\n");
+        printf("\033[1;31mnot found :(\033[0m\n");
         sleep(2);
         system("pause");
         system("cls");
@@ -545,36 +641,35 @@ void deleplayer()
         {
             system("cls");
             printf("We Found %s\n\n", player[i].name);
-            printf("1.confirm Delete !!!!\n");
-            printf("2.Cancel & back to main menu\n");
+            printf("\033[1;31m1. Confirm Delete !!!!\033[0m\n");
+            printf("\033[1;32m2. Cancel & back to main menu\033[0m\n");
             scanf("%d", &choice);
             founde = true;
 
             switch (choice)
             {
             case 1:
-                for(int j = i; j < count; j++)
+                for (int j = i; j < count; j++)
                 {
-                   player[j] = player[j+1];   
+                    player[j] = player[j + 1];
                 }
                 system("cls");
                 printf("wait a momment .... \n");
                 sleep(2);
-                printf("The player has been Deleted :)\n");
+                printf("\033[1;31mThe player has been Deleted :(\033[0m\n");
                 sleep(2);
                 system("pause");
                 system("cls");
-                -- count;
+                --count;
                 break;
 
             case 2:
                 system("cls");
                 break;
 
-
             default:
                 system("cls");
-                printf("invalid choice please try again !!\n");
+                printf("\033[1;31minvalid choice please try again !!\033[0m\n");
                 sleep(2);
                 system("cls");
                 break;
@@ -585,7 +680,7 @@ void deleplayer()
 
     if (founde == false)
     {
-        printf("not found :(\n");
+        printf("\033[1;31mnot found :(\033[0m\n");
         sleep(2);
         system("pause");
         system("cls");
@@ -617,16 +712,15 @@ void research()
                 if (findeid == player[i].id)
                 {
                     printf("We Founde Player, here is more information: \n");
-                    printf("ID: %d || First name: %s || Last name: %s || Age: %d || Position: %s || Goals: %d || Jersey numer: %d\n", player[i].id, player[i].name, player[i].lastname, player[i].age, player[i].position, player[i].goals, player[i].Jerseynum);
+                    printf("ID: %-3d || First name: %-15s || Last name: %-15s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d\n", player[i].id, player[i].name, player[i].lastname, player[i].age, player[i].position, player[i].goals, player[i].Jerseynum);
                     founde = true;
                     break;
                 }
-                
             }
 
             if (founde == false)
             {
-                printf("not found :(\n");
+                printf("\033[1;31mnot found :(\033[0m\n");
             }
 
             founde = false;
@@ -645,14 +739,14 @@ void research()
                 if (strcmp(findename, player[i].name) == 0)
                 {
                     printf("Founde this player, here is more information: \n\n");
-                    printf("ID: %d || First name: %s || Last name: %s || Age: %d || Position: %s || Goals: %d || Jersey numer: %d\n", player[i].id, player[i].name, player[i].lastname, player[i].age, player[i].position, player[i].goals, player[i].Jerseynum);
+                    printf("ID: %-3d || First name: %-15s || Last name: %-15s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d\n", player[i].id, player[i].name, player[i].lastname, player[i].age, player[i].position, player[i].goals, player[i].Jerseynum);
                     founde = true;
                 }
             }
 
             if (founde == false)
             {
-                printf("not found :(\n");
+                printf("\033[1;31mnot found :(\033[0m\n");
             }
 
             founde = false;
@@ -668,7 +762,7 @@ void research()
 
         default:
             system("cls");
-            printf("invalid choice please try again !!\n");
+            printf("\033[1;31minvalid choice please try again !!\033[0m\n");
             sleep(2);
             system("cls");
         }
@@ -677,7 +771,7 @@ void research()
 
 void statistique()
 {
-   do
+    do
     {
         system("cls");
         printf("1.Display the total number of players in the team\n");
@@ -687,15 +781,14 @@ void statistique()
         printf("5.Display the youngest and the oldest player.\n");
         printf("6.Back to main menu\n");
 
-
         scanf("%d", &choice);
 
-        switch (choice) 
+        switch (choice)
         {
-            case 1:
+        case 1:
             system("cls");
-            
-            if(count > 0)
+
+            if (count > 0)
             {
                 system("cls");
                 printf("total players in the team is => %d\n", count);
@@ -711,13 +804,13 @@ void statistique()
             }
             break;
 
-            case 2:
+        case 2:
             system("cls");
 
             float someage = 0;
-            if(count > 0)
+            if (count > 0)
             {
-                for(int i = 0; i < count; i++)
+                for (int i = 0; i < count; i++)
                 {
                     someage += player[i].age;
                 }
@@ -737,18 +830,18 @@ void statistique()
             }
             break;
 
-            case 3:
+        case 3:
             system("cls");
 
             printf("Enter Goals numbers :\n");
             scanf("%d", &goalnum);
-            
+
             for (int i = 0; i < count; i++)
             {
-                if ( player[i].goals > goalnum)
+                if (player[i].goals > goalnum)
                 {
-                    printf("here is player scored more than %d: \n", goalnum);
-                    printf("ID: %d || First name: %s || Last name: %s || Age: %d || Position: %s || Goals: %d || Jersey numer: %d\n\n", player[i].id, player[i].name, player[i].lastname, player[i].age, player[i].position, player[i].goals, player[i].Jerseynum);
+                    printf("here is player scored more than %d: \n\n", goalnum);
+                    printf("ID: %-3d || First name: %-15s || Last name: %-15s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d\n\n", player[i].id, player[i].name, player[i].lastname, player[i].age, player[i].position, player[i].goals, player[i].Jerseynum);
                     founde = true;
                 }
             }
@@ -765,7 +858,7 @@ void statistique()
             system("cls");
             break;
 
-            case 4:
+        case 4:
             system("cls");
 
             if (count > 0)
@@ -785,7 +878,7 @@ void statistique()
                 }
 
                 printf("the top scorer is: \n\n");
-                printf("ID: %d || First name: %s || Last name: %s || Age: %d || Position: %s || Goals: %d || Jersey numer: %d\n", player[0].id, player[0].name, player[0].lastname, player[0].age, player[0].position, player[0].goals, player[0].Jerseynum);
+                printf("ID: %-3d || First name: %-15s || Last name: %-15s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d\n", player[0].id, player[0].name, player[0].lastname, player[0].age, player[0].position, player[0].goals, player[0].Jerseynum);
                 sleep(2);
                 system("pause");
                 system("cls");
@@ -800,9 +893,9 @@ void statistique()
             }
             break;
 
-            case 5:
+        case 5:
             system("cls");
-            
+
             if (count > 0)
             {
 
@@ -819,12 +912,12 @@ void statistique()
                     }
                 }
                 printf("The oldest Player in the team: \n\n");
-                printf("ID: %d || First name: %s || Last name: %s || Age: %d || Position: %s || Goals: %d || Jersey numer: %d\n\n\n", player[0].id, player[0].name, player[0].lastname, player[0].age, player[0].position, player[0].goals, player[0].Jerseynum);
-                
-                if(count > 1)
+                printf("ID: %-3d || First name: %-15s || Last name: %-15s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d\n\n", player[0].id, player[0].name, player[0].lastname, player[0].age, player[0].position, player[0].goals, player[0].Jerseynum);
+
+                if (count > 1)
                 {
-                printf("The youngest Player in the team: \n\n");
-                printf("ID: %d || First name: %s || Last name: %s || Age: %d || Position: %s || Goals: %d || Jersey numer: %d\n\n\n", player[count-1].id, player[count-1].name, player[count-1].lastname, player[count-1].age, player[count-1].position, player[count-1].goals, player[count-1].Jerseynum);
+                    printf("The youngest Player in the team: \n\n");
+                    printf("ID: %-3d || First name: %-15s || Last name: %-15s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d\n\n", player[count - 1].id, player[count - 1].name, player[count - 1].lastname, player[count - 1].age, player[count - 1].position, player[count - 1].goals, player[count - 1].Jerseynum);
                 }
                 sleep(2);
                 system("pause");
@@ -837,20 +930,20 @@ void statistique()
                 sleep(2);
                 system("pause");
                 system("cls");
-            }  
+            }
             break;
 
-            case 6:
+        case 6:
             system("cls");
             break;
 
-            default:
+        default:
             system("cls");
-            printf("invalid choice please try again !!\n");
+            printf("\033[1;31minvalid choice please try again !!\033[0m\n");
             sleep(2);
             system("cls");
             break;
         }
 
-    }while(choice != 6);
+    } while (choice != 6);
 }
