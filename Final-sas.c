@@ -564,7 +564,7 @@ void deleplayer()
                 sleep(2);
                 system("pause");
                 system("cls");
-                count --;
+                -- count;
                 break;
 
             case 2:
