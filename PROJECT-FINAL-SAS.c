@@ -33,6 +33,7 @@ int goalnum;
 int pn;
 int choice;
 bool founde = false;
+bool jer = true;
 
 int main()
 {
@@ -150,7 +151,7 @@ void defplayer()
     strcpy(player[count].position, "AT");
     player[count].age = 24;
     player[count].goals = 80;
-    player[count].Jerseynum = 7;
+    player[count].Jerseynum = 16;
     player[count].id = nextid++;
     count++;
 
@@ -193,6 +194,7 @@ void defplayer()
 
 void addplayers()
 {
+    int jernum;
     int poschoice;
     do
     {
@@ -258,9 +260,26 @@ void addplayers()
 
             printf("Enter Player Goals: \n");
             scanf("%d", &player[count].goals);
+            do
+            {
+                printf("Enter Player Jersey number: \n");
+                scanf("%d", &jernum);
 
-            printf("Enter Player Jersey number: \n");
-            scanf("%d", &player[count].Jerseynum);
+                for (int i = 0; i < count; i++)
+                {
+                    if (jernum == player[i].Jerseynum)
+                    {
+                        system("cls");
+                        printf("\033[1;31mAlready have %d in our team try again !!\033[0m\n", jernum);
+                        sleep(2);
+                        jer = false;
+                        break;
+                    }
+                    jer = true;
+                }
+            } while (jer == false);
+
+            player[count].Jerseynum = jernum;
 
             player[count].id = nextid++;
             count++;
@@ -334,8 +353,26 @@ void addplayers()
                 printf("Enter Player%d Goals: \n", i + 1);
                 scanf("%d", &player[count].goals);
 
-                printf("Enter Player%d Jersey number: \n", i + 1);
-                scanf("%d", &player[count].Jerseynum);
+                do
+                {
+                    printf("Enter Player%d Jersey number: \n", i + 1);
+                    scanf("%d", &jernum);
+
+                    for (int j = 0; j < count; j++)
+                    {
+                        if (jernum == player[j].Jerseynum)
+                        {
+                            system("cls");
+                            printf("\033[1;31mAlready have %d in our team try again !!\033[0m\n", jernum);
+                            sleep(2);
+                            jer = false;
+                            break;
+                        }
+                        jer = true;
+                    }
+                } while (jer == false);
+
+                player[count].Jerseynum = jernum;
 
                 player[count].id = nextid++;
                 count++;
@@ -344,7 +381,7 @@ void addplayers()
             system("cls");
             printf("wait a momment .... \n");
             sleep(2);
-            printf("\033[1;32mPlayer has been added successfully :)\033[0m\n");
+            printf("\033[1;32mThe Players has been added successfully :)\033[0m\n");
             sleep(2);
             system("pause");
             system("cls");
@@ -661,7 +698,7 @@ void deleplayer()
         if (findeid == player[i].id)
         {
             system("cls");
-            printf("We Found %s\n\n", player[i].name);
+            printf("We Found %s %s\n\n", player[i].name, player[i].lastname);
             printf("\033[1;31m1. Confirm Delete !!!!\033[0m\n");
             printf("\033[1;32m2. Cancel & back to main menu\033[0m\n");
             scanf("%d", &choice);
@@ -732,7 +769,7 @@ void research()
             {
                 if (findeid == player[i].id)
                 {
-                    printf("We Founde Player, here is more information: \n");
+                    printf("We Founde Player(s), here is more information: \n");
                     printf("ID: %-3d || First name: %-15s || Last name: %-15s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d\n", player[i].id, player[i].name, player[i].lastname, player[i].age, player[i].position, player[i].goals, player[i].Jerseynum);
                     founde = true;
                     break;
