@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdbool.h>
+#include <time.h>
 
 struct team
 {
@@ -13,6 +14,7 @@ struct team
     int age;
     int goals;
     int Jerseynum;
+    char datesub[20];
 
 } player[100], temp;
 
@@ -100,6 +102,8 @@ int main()
 
 void defplayer()
 {
+    time_t now = time(NULL);
+    struct tm *lt = localtime(&now);
 
     strcpy(player[count].name, "Cristiano");
     strcpy(player[count].lastname, "Ronaldo");
@@ -108,6 +112,7 @@ void defplayer()
     player[count].goals = 910;
     player[count].Jerseynum = 7;
     player[count].id = nextid++;
+    strftime(player[count].datesub, sizeof(player[count].datesub), "%d\\%m\\%Y", lt);
     count++;
 
     strcpy(player[count].name, "Karim");
@@ -117,6 +122,7 @@ void defplayer()
     player[count].goals = 350;
     player[count].Jerseynum = 9;
     player[count].id = nextid++;
+    strftime(player[count].datesub, sizeof(player[count].datesub), "%d\\%m\\%Y", lt);
     count++;
 
     strcpy(player[count].name, "Luka");
@@ -126,6 +132,7 @@ void defplayer()
     player[count].goals = 50;
     player[count].Jerseynum = 10;
     player[count].id = nextid++;
+    strftime(player[count].datesub, sizeof(player[count].datesub), "%d\\%m\\%Y", lt);
     count++;
 
     strcpy(player[count].name, "Thibaut");
@@ -135,6 +142,7 @@ void defplayer()
     player[count].goals = 0;
     player[count].Jerseynum = 1;
     player[count].id = nextid++;
+    strftime(player[count].datesub, sizeof(player[count].datesub), "%d\\%m\\%Y", lt);
     count++;
 
     strcpy(player[count].name, "Sergio");
@@ -144,6 +152,7 @@ void defplayer()
     player[count].goals = 100;
     player[count].Jerseynum = 4;
     player[count].id = nextid++;
+    strftime(player[count].datesub, sizeof(player[count].datesub), "%d\\%m\\%Y", lt);
     count++;
 
     strcpy(player[count].name, "Vinicius");
@@ -153,6 +162,7 @@ void defplayer()
     player[count].goals = 80;
     player[count].Jerseynum = 16;
     player[count].id = nextid++;
+    strftime(player[count].datesub, sizeof(player[count].datesub), "%d\\%m\\%Y", lt);
     count++;
 
     strcpy(player[count].name, "Toni");
@@ -162,6 +172,7 @@ void defplayer()
     player[count].goals = 70;
     player[count].Jerseynum = 8;
     player[count].id = nextid++;
+    strftime(player[count].datesub, sizeof(player[count].datesub), "%d\\%m\\%Y", lt);
     count++;
 
     strcpy(player[count].name, "Marcelo");
@@ -171,6 +182,7 @@ void defplayer()
     player[count].goals = 30;
     player[count].Jerseynum = 12;
     player[count].id = nextid++;
+    strftime(player[count].datesub, sizeof(player[count].datesub), "%d\\%m\\%Y", lt);
     count++;
 
     strcpy(player[count].name, "Kylian");
@@ -180,6 +192,7 @@ void defplayer()
     player[count].goals = 200;
     player[count].Jerseynum = 11;
     player[count].id = nextid++;
+    strftime(player[count].datesub, sizeof(player[count].datesub), "%d\\%m\\%Y", lt);
     count++;
 
     strcpy(player[count].name, "Casemiro");
@@ -189,11 +202,16 @@ void defplayer()
     player[count].goals = 40;
     player[count].Jerseynum = 14;
     player[count].id = nextid++;
+    strftime(player[count].datesub, sizeof(player[count].datesub), "%d\\%m\\%Y", lt);
     count++;
 }
 
 void addplayers()
 {
+    int tempage;
+    time_t now = time(NULL);
+    struct tm *lt = localtime(&now);
+    bool ageee = true;
     int jernum;
     int poschoice;
     do
@@ -218,8 +236,24 @@ void addplayers()
             fgets(player[count].lastname, sizeof(player[count].lastname), stdin);
             player[count].lastname[strcspn(player[count].lastname, "\n")] = '\0';
 
-            printf("Enter Player Age: \n");
-            scanf("%d", &player[count].age);
+            do
+            {
+                printf("Enter Player Age: \n");
+                scanf("%d", &tempage);
+                if (tempage < 10 || tempage > 45)
+                {
+                    system("cls");
+                    printf("\033[1;31minvalid age entred try again !!\033[0m\n");
+                    sleep(2);
+                    system("cls");
+                    ageee = false;
+                }
+                else
+                {
+                    break;
+                }
+            } while (ageee == false);
+            player[count].age = tempage;
 
             do
             {
@@ -280,7 +314,7 @@ void addplayers()
             } while (jer == false);
 
             player[count].Jerseynum = jernum;
-
+            strftime(player[count].datesub, sizeof(player[count].datesub), "%d\\%m\\%Y", lt);
             player[count].id = nextid++;
             count++;
 
@@ -310,8 +344,24 @@ void addplayers()
                 fgets(player[count].lastname, sizeof(player[count].lastname), stdin);
                 player[count].lastname[strcspn(player[count].lastname, "\n")] = '\0';
 
-                printf("Enter Player%d Age: \n", i + 1);
-                scanf("%d", &player[count].age);
+                do
+                {
+                    printf("Enter Player%d Age: \n", i + 1);
+                    scanf("%d", &tempage);
+                    if (tempage < 10 || tempage > 45)
+                    {
+                        system("cls");
+                        printf("\033[1;31minvalid age entred try again !!\033[0m\n");
+                        sleep(2);
+                        system("cls");
+                        ageee = false;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                } while (ageee == false);
+                player[count].age = tempage;
 
                 do
                 {
@@ -373,7 +423,7 @@ void addplayers()
                 } while (jer == false);
 
                 player[count].Jerseynum = jernum;
-
+                strftime(player[count].datesub, sizeof(player[count].datesub), "%d\\%m\\%Y", lt);
                 player[count].id = nextid++;
                 count++;
             }
@@ -438,11 +488,11 @@ void showallp()
                 {
                     if (player[i].goals > 800)
                     {
-                        printf("ID: %-3d || First name: %-15s || Last name: %-15s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d => * Tm Star * \n", player[i].id, player[i].name, player[i].lastname, player[i].age, player[i].position, player[i].goals, player[i].Jerseynum);
+                        printf("ID: %-3d || First name: %-10s || Last name: %-10s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d || Subscription date: %-3s *Tm Star*\n", player[i].id, player[i].name, player[i].lastname, player[i].age, player[i].position, player[i].goals, player[i].Jerseynum, player[i].datesub);
                     }
                     else
                     {
-                        printf("ID: %-3d || First name: %-15s || Last name: %-15s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d\n", player[i].id, player[i].name, player[i].lastname, player[i].age, player[i].position, player[i].goals, player[i].Jerseynum);
+                        printf("ID: %-3d || First name: %-10s || Last name: %-10s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d || Subscription date: %-3s\n", player[i].id, player[i].name, player[i].lastname, player[i].age, player[i].position, player[i].goals, player[i].Jerseynum, player[i].datesub);
                     }
                 }
                 sleep(2);
@@ -482,11 +532,11 @@ void showallp()
                 {
                     if (player[i].goals > 800)
                     {
-                        printf("ID: %-3d || First name: %-15s || Last name: %-15s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d => * Tm Star * \n", player[i].id, player[i].name, player[i].lastname, player[i].age, player[i].position, player[i].goals, player[i].Jerseynum);
+                        printf("ID: %-3d || First name: %-10s || Last name: %-10s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d || Subscription date: %-3s *Tm Star*\n", player[i].id, player[i].name, player[i].lastname, player[i].age, player[i].position, player[i].goals, player[i].Jerseynum, player[i].datesub);
                     }
                     else
                     {
-                        printf("ID: %-3d || First name: %-15s || Last name: %-15s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d\n", player[i].id, player[i].name, player[i].lastname, player[i].age, player[i].position, player[i].goals, player[i].Jerseynum);
+                        printf("ID: %-3d || First name: %-10s || Last name: %-10s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d || Subscription date: %-3s\n", player[i].id, player[i].name, player[i].lastname, player[i].age, player[i].position, player[i].goals, player[i].Jerseynum, player[i].datesub);
                     }
                 }
                 sleep(2);
@@ -526,11 +576,11 @@ void showallp()
                 {
                     if (player[i].goals > 800)
                     {
-                        printf("ID: %-3d || First name: %-15s || Last name: %-15s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d => * Tm Star * \n", player[i].id, player[i].name, player[i].lastname, player[i].age, player[i].position, player[i].goals, player[i].Jerseynum);
+                        printf("ID: %-3d || First name: %-10s || Last name: %-10s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d || Subscription date: %-3s *Tm Star*\n", player[i].id, player[i].name, player[i].lastname, player[i].age, player[i].position, player[i].goals, player[i].Jerseynum, player[i].datesub);
                     }
                     else
                     {
-                        printf("ID: %-3d || First name: %-15s || Last name: %-15s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d\n", player[i].id, player[i].name, player[i].lastname, player[i].age, player[i].position, player[i].goals, player[i].Jerseynum);
+                        printf("ID: %-3d || First name: %-10s || Last name: %-10s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d || Subscription date: %-3s\n", player[i].id, player[i].name, player[i].lastname, player[i].age, player[i].position, player[i].goals, player[i].Jerseynum, player[i].datesub);
                     }
                 }
                 sleep(2);
@@ -769,8 +819,8 @@ void research()
             {
                 if (findeid == player[i].id)
                 {
-                    printf("We Founde Player(s), here is more information: \n");
-                    printf("ID: %-3d || First name: %-15s || Last name: %-15s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d\n", player[i].id, player[i].name, player[i].lastname, player[i].age, player[i].position, player[i].goals, player[i].Jerseynum);
+                    printf("We Founde Player, here is more information: \n");
+                    printf("ID: %-3d || First name: %-10s || Last name: %-10s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d || Subscription date: %-3s\n", player[i].id, player[i].name, player[i].lastname, player[i].age, player[i].position, player[i].goals, player[i].Jerseynum, player[i].datesub);
                     founde = true;
                     break;
                 }
@@ -796,8 +846,11 @@ void research()
             {
                 if (strcmp(findename, player[i].name) == 0)
                 {
-                    printf("Founde this player(s), here is more information: \n\n");
-                    printf("ID: %-3d || First name: %-15s || Last name: %-15s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d\n", player[i].id, player[i].name, player[i].lastname, player[i].age, player[i].position, player[i].goals, player[i].Jerseynum);
+                    if (founde == false)
+                    {
+                        printf("Founde this player(s), here is more information:\n");
+                    }
+                    printf("ID: %-3d || First name: %-10s || Last name: %-10s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d || Subscription date: %-3s\n", player[i].id, player[i].name, player[i].lastname, player[i].age, player[i].position, player[i].goals, player[i].Jerseynum, player[i].datesub);
                     founde = true;
                 }
             }
@@ -908,9 +961,11 @@ void statistique()
 
                 if (player[i].goals > goalnum)
                 {
-
-                    printf("here is player scored more than %d: \n\n", goalnum);
-                    printf("ID: %-3d || First name: %-15s || Last name: %-15s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d\n\n", player[i].id, player[i].name, player[i].lastname, player[i].age, player[i].position, player[i].goals, player[i].Jerseynum);
+                    if (founde == false)
+                    {
+                        printf("here is Player(s) scored more than %d:\n", goalnum);
+                    }
+                    printf("ID: %-3d || First name: %-10s || Last name: %-10s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d || Subscription date: %-3s\n", player[i].id, player[i].name, player[i].lastname, player[i].age, player[i].position, player[i].goals, player[i].Jerseynum, player[i].datesub);
                     founde = true;
                 }
             }
@@ -947,7 +1002,7 @@ void statistique()
                 }
 
                 printf("the top scorer is: \n\n");
-                printf("ID: %-3d || First name: %-15s || Last name: %-15s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d\n", player[0].id, player[0].name, player[0].lastname, player[0].age, player[0].position, player[0].goals, player[0].Jerseynum);
+                printf("ID: %-3d || First name: %-10s || Last name: %-10s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d || Subscription date: %-3s\n", player[0].id, player[0].name, player[0].lastname, player[0].age, player[0].position, player[0].goals, player[0].Jerseynum, player[0].datesub);
                 sleep(2);
                 system("pause");
                 system("cls");
@@ -981,12 +1036,12 @@ void statistique()
                     }
                 }
                 printf("The oldest Player in the team: \n\n");
-                printf("ID: %-3d || First name: %-15s || Last name: %-15s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d\n\n", player[0].id, player[0].name, player[0].lastname, player[0].age, player[0].position, player[0].goals, player[0].Jerseynum);
+                printf("ID: %-3d || First name: %-10s || Last name: %-10s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d || Subscription date: %-3s\n", player[0].id, player[0].name, player[0].lastname, player[0].age, player[0].position, player[0].goals, player[0].Jerseynum, player[0].datesub);
 
                 if (count > 1)
                 {
                     printf("The youngest Player in the team: \n\n");
-                    printf("ID: %-3d || First name: %-15s || Last name: %-15s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d\n\n", player[count - 1].id, player[count - 1].name, player[count - 1].lastname, player[count - 1].age, player[count - 1].position, player[count - 1].goals, player[count - 1].Jerseynum);
+                    printf("ID: %-3d || First name: %-10s || Last name: %-10s || Age: %-3d || Position: %-3s || Goals: %-5d || Jersey numer: %-3d || Subscription date: %-3s\n", player[count - 1].id, player[count - 1].name, player[count - 1].lastname, player[count - 1].age, player[count - 1].position, player[count - 1].goals, player[count - 1].Jerseynum, player[count - 1].datesub);
                 }
                 sleep(2);
                 system("pause");
